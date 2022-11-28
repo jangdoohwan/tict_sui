@@ -12,3 +12,11 @@ jobs:
         uses: actions/setup-node@main
         with:
           node-version: 14.16.1
+      # 패키지 설치
+      - name: Install dependencies
+        run: npm install
+      # 패키지
+#       - name: Build Page
+#         run: npm run build
+#         env:
+#           NODE_ENV: production
