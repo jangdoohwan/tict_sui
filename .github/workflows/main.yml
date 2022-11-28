@@ -1,31 +1,35 @@
 name: npm Build and Deploy
 on:
   workflow_dispatch:
-
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v3
+      # node.js 환경설정
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 14.16.1
+      # 패키지 라이브러리 캐싱
       - name: Cache node modules
-        id: node-cache
         uses: actions/cache@v2
         env:
           cache-name: cache-node-modules
         with:
-          path: node_modules
-          key: ${{ runner.os }}-node-modules-${{ hashFiles('**/package-lock.json') }}
+          # npm cache files are stored in `~/.npm` on Linux/macOS
+          path: ~/.npm
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
-            ${{ runner.os }}-node-modules-
-      - name: Install Dependencies
-        if: steps.node-cache.outputs.cache-hit != 'true'
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
+      # 패키지 설치
+      - name: Install dependencies
         run: npm install
-#       - name: create env file
+      # 패키지 빌드
+      - name: Build Page
+        run: npm run build
 #         env:
-#           ENVIORNMENT_VARIABLES: ${{ secrets.ENVIORNMENT_VARIABLES }}
-#         shell: bash
-#         run: |
-#           echo "$ENVIORNMENT_VARIABLES" > .env
-      - name: build
-        run: |
-          npm build
+#           NODE_ENV: production
