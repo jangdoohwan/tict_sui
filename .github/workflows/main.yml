@@ -15,21 +15,17 @@ jobs:
         with:
           node-version: '14.16.1'
           
-      - name: Set up Npm Cache
+      - name: Cache dependencies
+        id: cache
         uses: actions/cache@v3
-        id: npm-cache
         with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          
-      - if: steps.npm-cache.outputs.cache-hit == 'true'
-        run: echo 'npm cache hit!'
-      - if: steps.npm-cache.outputs.cache-hit == 'true'
-        run: npm ci
-        
-      - if: steps.npm-cache.outputs.cache-hit != 'true'
-        run: echo 'npm cache missed!' 
-      - if: steps.npm-cache.outputs.cache-hit != 'true'
-        run: npm install 
+          path: '**/node_modules'
+          restore-keys: |
+            ${{ runner.os }}-node-
 
-#       - run: npm ci
+      - name: Install Dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: npm install
+
+      - name: Run build
+        run: npm run build
