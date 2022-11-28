@@ -20,12 +20,12 @@ jobs:
       - name: Install Dependencies
         if: steps.node-cache.outputs.cache-hit != 'true'
         run: npm install
-      - name: create env file
-        env:
-          ENVIORNMENT_VARIABLES: ${{ secrets.ENVIORNMENT_VARIABLES }}
-        shell: bash
+#       - name: create env file
+#         env:
+#           ENVIORNMENT_VARIABLES: ${{ secrets.ENVIORNMENT_VARIABLES }}
+#         shell: bash
+#         run: |
+#           echo "$ENVIORNMENT_VARIABLES" > .env
+      - name: build
         run: |
-          echo "$ENVIORNMENT_VARIABLES" > .env
-      - name: Test
-        run: |
-          npm test
+          npm build
