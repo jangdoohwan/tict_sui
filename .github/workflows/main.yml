@@ -5,16 +5,14 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      # 소스 chechout
       - name: Checkout
         uses: actions/checkout@v2
+        
       # node.js 환경설정
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: 14.16.1
-      # 패키지 라이브러리 캐싱
       - name: Cache node modules
-        uses: actions/cache@v2
+        id: cache-npm
+        uses: actions/cache@v3
         env:
           cache-name: cache-node-modules
         with:
@@ -25,6 +23,12 @@ jobs:
             ${{ runner.os }}-build-${{ env.cache-name }}-
             ${{ runner.os }}-build-
             ${{ runner.os }}-
+
+      - if: ${{ steps.cache-npm.outputs.cache-hit != 'true' }}
+        name: List the state of node modules
+        continue-on-error: true
+        run: npm list
+        
       # 패키지 설치
       - name: Install dependencies
         run: npm install
