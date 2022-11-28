@@ -1,4 +1,4 @@
-name: Gradle Build and Deploy
+name: vue.js npm Build and Deploy
 on:
   workflow_dispatch:
 jobs:
