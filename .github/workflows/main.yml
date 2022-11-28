@@ -1,0 +1,14 @@
+name: Gradle Build and Deploy
+on:
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@main
+      # node.js 환경설정
+      - name: Set up Node.js
+        uses: actions/setup-node@main
+        with:
+          node-version: 14.16.1
