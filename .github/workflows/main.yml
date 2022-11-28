@@ -15,8 +15,8 @@ jobs:
       # 패키지 설치
       - name: Install dependencies
         run: npm install
-      # 패키지
-#       - name: Build Page
-#         run: npm run build
+      # 패키지 빌드
+      - name: Build Page
+        run: npm run build
 #         env:
 #           NODE_ENV: production
