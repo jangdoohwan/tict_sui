@@ -1,0 +1,220 @@
+/* 다른 위치의 less나 css 파일들을 이렇게 import 할 수 있습니다. */
+/* less의 경우 확장자를 안써도 됩니다. */
+/* default less 셋 */
+
+@import './ui.jqgrid.css';
+@import './style.css';
+@import './form';
+@import './login';
+@import './theme_blue.less';
+@import './theme_green.less';
+@import './popup.less';
+@import './menu';
+
+._dashboard-video {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  ._dashboard-video-header {
+    display: flex;
+    flex: none;
+  }
+  ._dashboard-video-body {
+    flex: 1;
+    margin-top: 10px;
+    position: relative;
+  }
+  ._dashboard-video-control {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    width: 100px;
+    height: 100px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    ._dashboard-video-control-button {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 22px;
+      height: 22px;
+      text-indent: -2000px;
+      overflow: hidden;
+      display: block;
+      background-color: transparent;
+      background-image: url("data:image/svg+xml,%3Csvg width='20' height='17' viewBox='0 0 20 17' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 0L19.5263 16.5L0.473721 16.5L10 0Z' fill='black'/%3E%3C/svg%3E%0A");
+      background-repeat: no-repeat;
+      background-position: center;
+      transform: translate(-11px, -11px);
+      &:hover {
+        background-image: url("data:image/svg+xml,%3Csvg width='20' height='17' viewBox='0 0 20 17' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 0L19.5263 16.5L0.473721 16.5L10 0Z' fill='%23d0006f'/%3E%3C/svg%3E%0A");
+      }
+      &.lt {
+        transform: translate(-35px, -35px) rotate(-45deg);
+      }
+      &.t {
+        transform: translate(-11px, -45px);
+      }
+      &.rt {
+        transform: translate(15px, -36px) rotate(45deg);
+      }
+      &.l {
+        transform: translate(-45px, -11px) rotate(-90deg);
+      }
+      &.r {
+        transform: translate(25px, -11px) rotate(90deg);
+      }
+      &.lb {
+        transform: translate(-35px, 11px) rotate(-10deg);
+      }
+      &.b {
+        transform: translate(-11px, 25px) rotate(180deg);
+      }
+      &.rb {
+        transform: translate(11px, 11px) rotate(-115deg);
+      }
+    }
+  }
+
+  ._dashboard-video-control-square {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    width: 70px;
+    height: 70px;
+    background-color: rgba(255, 255, 255, 0.5);
+    ._dashboard-video-control-button {
+      position: absolute;
+      width: 33.33%;
+      height: 33.33%;
+      text-indent: -2000px;
+      overflow: hidden;
+      display: block;
+      background-color: transparent;
+      background-image: url("data:image/svg+xml,%3Csvg width='20' height='17' viewBox='0 0 20 17' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 0L19.5263 16.5L0.473721 16.5L10 0Z' fill='black'/%3E%3C/svg%3E%0A");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 15px;
+      // transform: translate(-11px, -11px);
+      &:hover {
+        background-image: url("data:image/svg+xml,%3Csvg width='20' height='17' viewBox='0 0 20 17' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 0L19.5263 16.5L0.473721 16.5L10 0Z' fill='%23d0006f'/%3E%3C/svg%3E%0A");
+      }
+      &.lt {
+        top: 0;
+        left: 0;
+        transform: translate(0, 5%) rotate(-45deg);
+      }
+      &.t {
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      &.rt {
+        top: 0;
+        right: 0;
+        transform: translate(0, 0) rotate(45deg);
+      }
+      &.l {
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%) rotate(-90deg);
+      }
+      &.r {
+        top: 50%;
+        right: 0;
+        transform: translateY(-50%) rotate(90deg);
+      }
+      &.lb {
+        bottom: 0;
+        left: 0;
+        transform: translate(0, 0) rotate(-10deg);
+      }
+      &.b {
+        bottom: 0;
+        left: 50%;
+        transform: translate(-50%, 0) rotate(180deg);
+      }
+      &.rb {
+        bottom: 0;
+        right: 0;
+        transform: translate(0, 0) rotate(-115deg);
+      }
+    }
+  }
+}
+
+.drawer-box {
+  display: flex;
+  width: 100%;
+  height: calc(100vh - 220px);
+  min-height: 500px;
+  .drawer-header {
+    flex: none;
+    padding: 15px 10px;
+  }
+  .drawer-content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 10px;
+  }
+  .drawer-left-wrap {
+    width: 220px;
+    flex: none;
+    display: flex;
+    flex-direction: column;
+  }
+  .drawer-right-wrap {
+    flex: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    .drawer-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+  .dashbaord-drawer-item-box {
+    border: 1px solid #d4dce4;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 10px;
+    width: 100%;
+    cursor: move;
+    user-select: none;
+  }
+}
+@media screen and (min-width: 0) and (max-width: 767px) {
+  .drawer-box {
+    display: flex;
+    width: 100%;
+    min-height: 500px;
+    height: auto;
+    flex-direction: column;
+
+    .drawer-left-wrap {
+      width: 100%;
+      flex: none;
+      overflow-x: auto;
+      .drawer-content {
+        display: table;
+        table-layout: fixed;
+        width: 100%;
+        .dashbaord-drawer-item {
+          display: table-cell;
+          width: 170px;
+          padding: 0 5px;
+        }
+      }
+    }
+    .drawer-right-wrap {
+      flex: 1;
+      padding-top: 15px;
+      .drawer-header {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+      }
+    }
+  }
+}

@@ -1,0 +1,211 @@
+.gnb {
+  --primary: #d0006f;
+}
+.type-blue {
+  .gnb { 
+    --primary: #4182d2;
+  }
+}
+.type-green {
+  .gnb {
+    --primary: #41a074;
+  }
+}
+.gnb-nav {
+  display: flex;
+}
+.gnb-nav-item {
+  height: 45px;
+}
+.gnb-nav-item a {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0 15px;
+}
+.gnb-nav-item a.active {
+  background: var(--primary);
+}
+.gnb-nav-item a .gnb-nav-title {
+  display: inline-block;
+  color: #fff;
+  letter-spacing: -0.05rem;
+  font-weight: bold;
+  font-size: 1rem;
+}
+.gnb-nav-item > a > span {
+  display: flex;
+  align-items: center;
+  flex-wrap: no-wrap;
+}
+.gnb-nav-item > a > span.external::after {
+  content: '';
+  width: 15px;
+  height: 15px;
+  display: inline-block;
+  background-image: url(../images/ico_window_new.svg);
+  background-size: 13px;
+  background-position: cetner;
+  background-repeat: no-repeat;
+}
+/* ========== 2depth ========== */
+.gnb-nav-sub {
+  position: absolute;
+  background: #fff;
+  border: 1px solid #aaa;
+  border-top: none;
+  width: max-content;
+  padding-top:5px;
+  padding-bottom:5px;
+  display: none;
+}
+.gnb-nav-sub.active {
+  display: block;
+}
+.gnb-nav-sub-item a{
+  display: flex;
+  justify-content: space-between;
+}
+.gnb-nav-sub-item.plus > a::after {
+  content: '';
+  width: 15px;
+  height: 15px; 
+  display: block;
+  background-image: url(../images/ico_add.svg);
+  background-size: 13px;
+  background-repeat: no-repeat;
+  background-position: cetner;
+  margin-left: 30px;
+}
+.gnb-nav-sub-item.plus > a:hover::after {
+  background-image: url(../images/ico_add_on.svg);
+}
+.gnb-nav-sub-item a {
+  width: 100%;
+  padding: 5px 10px;
+}
+.gnb-nav-sub-item a span {
+  letter-spacing: -0.05rem;
+  font-size: 0.92rem;
+}
+.gnb-nav-sub-item a:hover span{
+  color: var(--primary);
+}
+.gnb-nav-sub-item.external a span::after{
+  content: '';
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  background-image: url(../images/ico_window_new_gray.svg);
+  background-repeat: no-repeat;
+  background-size: 15px;
+  background-position: center;
+  margin-left: 5px;
+}
+/* ========== 3depth ========== */
+.gnb-nav-sub2{
+  padding-left: 10px;
+  display: none;
+}
+.gnb-nav-sub2.active { 
+  display: block;
+}
+.gnb-nav-sub2-item.external a span::after{
+  content: '';
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  background-image: url(../images/ico_window_new_gray.svg);
+  background-repeat: no-repeat;
+  background-size: 15px;
+  background-position: center;
+  margin-left: 5px;
+}
+
+
+/* ============================== */
+/* =========== Mobile =========== */
+/* ============================== */
+@media screen and (min-width: 0) and (max-width: 1024px) {
+  .gnb-nav {
+    display: flex;
+    flex-direction: column;
+    padding-top: 10px;
+  }
+  .gnb-nav-item {
+    border-bottom: 1px solid #d3dbe3;
+    max-height: 100%;
+    min-height: 0;
+    height: auto;
+    padding: 15px 5px;
+  }
+  .gnb-nav-item a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0;
+  }
+  .gnb-nav-item a .gnb-nav-title {
+    position: relative;
+    text-align: left;
+    font-size: 16px;
+    color: #333;
+    font-weight: normal;
+  }
+  .gnb-nav-item.plus > a::after{
+    content: '';
+    width: 15px;
+    height: 15px; 
+    display: block;
+    background-image: url(../images/ico_add.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 13px;
+  }
+  .gnb-nav-item > a.active {
+    background-color: transparent;
+  }
+  .gnb-nav-item > a.active .gnb-nav-title, .gnb-nav-item > a:hover .gnb-nav-title {
+    color: var(--primary);
+  }
+  .gnb-nav-sub {
+    position: relative;
+    top: auto;
+    left: auto;
+    background: #fff;
+    border: none;
+    width: 100%;
+    display: block;
+    padding: 0;
+    min-height: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.25s cubic-bezier(0.7, 0, 0.3, 1);
+  }
+  .gnb-nav-sub .gnb-nav-sub-item > a {
+    padding: 5px 0;
+  }
+  .gnb-nav-sub.active {
+    padding: 10px;
+    max-height: 500px;
+    transition: all 0.25s cubic-bezier(0.7, 0, 0.3, 1);
+  }
+  .gnb-nav-sub2 {
+    position: relative;
+    display: block;
+    min-width: 0;
+    max-height: 0;
+    background-color: #f5f6f7;
+    overflow: hidden;
+    transition: all 0.25s cubic-bezier(0.7, 0, 0.3, 1);
+  }
+  .gnb-nav-sub2.active {
+    padding: 10px 15px;
+    max-height: 500px;
+    transition: all 0.25s cubic-bezier(0.7, 0, 0.3, 1);
+  }
+  .gnb-nav-sub2 .gnb-nav-sub2-item > a{
+    padding: 3px 0;
+  }
+}
