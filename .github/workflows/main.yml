@@ -7,30 +7,21 @@ jobs:
     steps:
       # 소스 체크아웃
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         
       # node.js 환경설정
       - name: Set up Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: '14.16.1'
-            
-      - name: Cache dependencies
-        uses: actions/cache@v2
+      - name: Set up Npm Cache
+      - uses: actions/cache@v3
+        id: npm-cache
         with:
           path: ~/.npm
-          key: npm-${{ hashFiles('package-lock.json') }}
-          restore-keys: npm-
-
-      - name: Install dependencies
-        run: npm ci --ignore-scripts
-        
-#       # 패키지 설치
-#       - name: Install dependencies
-#         run: npm install
-        
-      # 패키지 빌드
-      - name: Build Page
-        run: npm run build
-#         env:
-#           NODE_ENV: production
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+      - if: steps.npm-cache.outputs.cache-hit == 'true'
+        run: echo 'npm cache hit!'
+      - if: steps.npm-cache.outputs.cache-hit != 'true'
+        run: echo 'npm cache missed!'
+      - run: npm ci
