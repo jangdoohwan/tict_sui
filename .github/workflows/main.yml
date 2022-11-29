@@ -37,7 +37,6 @@ jobs:
         run: npm run build
         env:
           NODE_ENV: udev
-      - uses: actions/checkout@master
       - name: Compress action step
         uses: a7ul/tar-action@v1.1.0
         id: compress
