@@ -44,6 +44,7 @@ jobs:
             server: '211.44.220.135'
             port: '12345'
 #             ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }} 
+            sftp_only: true
             password: 'zaq12wsx!'
             local_path: './dist/*'
             remote_path: '/home/tict/app/web'
