@@ -43,9 +43,9 @@ jobs:
         id: compress
         with:
           command: c
-          cwd: ./
+          cwd: ./dist
           files: |
-            ./dist
+            ./
           outPath: dist.tar.gz
 #       - name: Execute remote shell
 #         uses: appleboy/ssh-action@master
