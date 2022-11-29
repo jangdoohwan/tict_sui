@@ -37,3 +37,14 @@ jobs:
         run: npm run build
         env:
           NODE_ENV: udev
+      - name: Deploy
+        uses: wlixcc/SFTP-Deploy-Action@v1.2.4
+        with:
+            username: 'tict'
+            server: '211.42.243.107'
+            port: '10003'
+#             ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }} 
+            password: 'Zaq12wsx!@'
+            local_path: './dist/*'
+            remote_path: '/home/tict/app/web'
+            sftpArgs: '-o ConnectTimeout=5'
