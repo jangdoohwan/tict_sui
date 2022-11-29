@@ -49,3 +49,4 @@ jobs:
             local_path: './dist/*'
             remote_path: '/home/tict/app/web'
             sftpArgs: '-o ConnectTimeout=5'
+            delete_remote_files: true
