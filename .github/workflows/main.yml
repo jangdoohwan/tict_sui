@@ -49,7 +49,6 @@ jobs:
             rm -rf /home/tict/app/web/
             mkdir -p /home/tict/app/web/assets
             mkdir -p /home/tict/app/web/external
-            mkdir -p /home/tict/app/web/web
       - name: Deploy
         uses: wlixcc/SFTP-Deploy-Action@v1.2.4
         with:
@@ -62,4 +61,4 @@ jobs:
             local_path: './dist/*'
             remote_path: '/home/tict/app/web'
             sftpArgs: '-o ConnectTimeout=5'
-            delete_remote_files: true
+#             delete_remote_files: true
