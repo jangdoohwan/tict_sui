@@ -37,18 +37,28 @@ jobs:
         run: npm run build
         env:
           NODE_ENV: udev
-      - name: Execute remote shell
-        uses: appleboy/ssh-action@master
+      - uses: actions/checkout@master
+      - name: Compress action step
+        uses: a7ul/tar-action@v1.1.0
+        id: compress
         with:
-          host: '211.44.220.135'
-          username: 'tict'
-#           key: ${{ secrets.KEY }}
-          password: 'zaq12wsx!'
-          port: '12345'
-          script: |
-            rm -rf /home/tict/app/web/
-            mkdir -p /home/tict/app/web/assets
-            mkdir -p /home/tict/app/web/external
+          command: c
+          cwd: ./dist
+          files: |
+            ./toCompress
+          outPath: dist.tar.gz
+#       - name: Execute remote shell
+#         uses: appleboy/ssh-action@master
+#         with:
+#           host: '211.44.220.135'
+#           username: 'tict'
+# #           key: ${{ secrets.KEY }}
+#           password: 'zaq12wsx!'
+#           port: '12345'
+#           script: |
+#             rm -rf /home/tict/app/web/
+#             mkdir -p /home/tict/app/web/assets
+#             mkdir -p /home/tict/app/web/external
       - name: Deploy
         uses: wlixcc/SFTP-Deploy-Action@v1.2.4
         with:
@@ -58,7 +68,7 @@ jobs:
 #             ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }} 
             sftp_only: true
             password: 'zaq12wsx!'
-            local_path: './dist/*'
+            local_path: './dist.tar.gz'
             remote_path: '/home/tict/app/web'
             sftpArgs: '-o ConnectTimeout=5'
 #             delete_remote_files: true
